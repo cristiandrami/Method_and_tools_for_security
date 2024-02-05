@@ -1,0 +1,6 @@
+compile the file with 
+gcc -m64 -fno-stack-protector -D_FORTIFY_SOURCE=0 -o vuln
+
+
+
+it works when NX os enabled but ASRL is not enabled on system
