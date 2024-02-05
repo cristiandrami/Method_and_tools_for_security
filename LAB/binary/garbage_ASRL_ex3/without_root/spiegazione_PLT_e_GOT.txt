@@ -1,0 +1,6 @@
+PLT 
+La PLT (procedure linkage table) viene utilizzata per il linking dinamico delle funzioni invocate.
+L'idea è che quando invochiamo per la prima volta una funzione la PLT chiama il dynamic linker per poter risolvere l'indirizzo e avere accesso alla funzione. L aprima volta che l'indirizzo di una funzione viene risolto, l'indirizzo vero (per l'esecuzione della funzione) viene salvato nella GOT.
+Dalla seconda chiamata in poi della stessa funzione la PLT accede direttamente alla GOT senza dover risolvere nuovamente con l'uso del dynamic linker).
+
+

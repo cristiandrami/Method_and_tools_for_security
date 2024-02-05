@@ -1,2 +1,3 @@
 it works when we have NX disable, no canaries and no ASRL on the system
+gcc -m64 -no-pie -fno-stack-protector -z execstack -D_FORTIFY_SOURCE=0 -o vuln find_rec
 
