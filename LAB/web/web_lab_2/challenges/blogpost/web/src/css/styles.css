@@ -1,6 +1,0 @@
-.post-image {
-    width: 24px !important;   /* adjust as needed */
-    height: 24px !important; /* adjust as needed */
-    #object-fit: cover; /* this will crop the image to fit the dimensions */
-}
-

