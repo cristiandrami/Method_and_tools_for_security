@@ -1,0 +1,13 @@
+"""
+Il codice e' quasi memory safe perche' usa una funzione chiamata read_nbytes
+1) la prima cosa che chiede e' il nome e qui il numero di byte massimo e' gestito dal codice
+2) chiede la lunghezza del messaggio all'utente (importante)
+3) chiede all'utente di inserire il messaggio   (usando come numero di byte da leggere quello inserito dall'utente)
+    se uso 500 e muso pattern create e pattern search vedo che l'offset per raggiungere rsp è 152
+
+    
+
+abbiamo nel codice printf e puts (guarda gdb disass main)
+
+posso usarli per leakare la libc
+"""
