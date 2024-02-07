@@ -1,0 +1,2 @@
+ In this case there is a magic method we want to call and we'll do so by overwriting a saved return address on the stack, certainly nothing that could be called a 'chain' by any stretch of the imagination but we've got to start somewhere. We'll do a little RE to confirm some information but nothing serious. 
+
