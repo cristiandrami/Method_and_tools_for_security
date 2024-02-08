@@ -1,0 +1,1 @@
+non abbiamo NX abilitato quindi posso usare uno shellcode

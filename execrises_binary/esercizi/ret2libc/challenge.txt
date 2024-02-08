@@ -1,0 +1,2 @@
+abbiamo NX abilitato quindi non posso usare uno shellcode
+non c'è PIE quindi posso leakare la libc
