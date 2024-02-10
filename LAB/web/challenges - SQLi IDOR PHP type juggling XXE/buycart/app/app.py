@@ -5,6 +5,15 @@ import lxml.etree, os
 app = Flask(__name__)
 
 def margot_frat(arr):
+    """
+    The function `margot_frat` recursively divides an array into smaller halves and then merges them
+    together using the `margot` function.
+    
+    :param arr: The parameter `arr` is a list of elements that we want to sort using the Margot Frat
+    algorithm
+    :return: The function `margot_frat` is returning the result of calling the function `margot` with
+    the `left_half` and `right_half` arrays as arguments.
+    """
     if len(arr) <= 1:
         return arr
 
@@ -15,6 +24,15 @@ def margot_frat(arr):
     return margot(left_half, right_half)
 
 def margot(left, right):
+    """
+    The `margot` function takes two lists, `left` and `right`, and merges them into a single sorted
+    list.
+    
+    :param left: The parameter "left" is a list of elements that will be merged with the "right" list
+    :param right: The parameter "right" is a list of elements that will be merged with the "left" list
+    in the margot function
+    :return: a merged and sorted list of the elements from the left and right lists.
+    """
     margot_d = []
     left_index, right_index = 0, 0
 
@@ -31,6 +49,19 @@ def margot(left, right):
     return margot_d
 
 def deejaystra(graph, start):
+    """
+    The function `deejaystra` implements Dijkstra's algorithm to find the shortest path distances from a
+    given start node to all other nodes in a graph.
+    
+    :param graph: The graph parameter is a dictionary that represents the graph structure. The keys of
+    the dictionary are the nodes in the graph, and the values are dictionaries themselves. Each inner
+    dictionary represents the neighbors of a node, where the keys are the neighbor nodes and the values
+    are the weights of the edges connecting the nodes
+    :param start: The start parameter is the node from which you want to calculate the shortest
+    distances to all other nodes in the graph
+    :return: The function `deejaystra` returns a dictionary `distances` which contains the shortest
+    distances from the start node to all other nodes in the graph.
+    """
     distances = {node: float('inf') for node in graph}
     distances[start] = 0
     priority_queue = [(0, start)]
