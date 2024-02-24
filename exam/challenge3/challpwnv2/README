@@ -1,0 +1,4 @@
+istruzioni per installazione ed esecuzione 
+ - sudo docker build -t challpwn .
+ - sudo docker run -d -p "0.0.0.0:9999:9999" --privileged --name challpwn challpwn
+

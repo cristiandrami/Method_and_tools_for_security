@@ -1,0 +1,27 @@
+version: '3'
+services:
+  webapp:
+    build:
+      context: .
+      dockerfile: Dockerfile.flask
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./webapp:/app
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=development
+      - FLAG=EMS{${FLAG_MD5_HASH}}
+      - ADMIN_PASSWORD=adminpassword # do not change it, it is used by the admin bot.
+  admin_bot:
+    build:
+      context: .
+      dockerfile: Dockerfile.node
+    volumes:
+      - ./admin_bot:/admin_bot
+      - /admin_bot/node_modules
+      - ./webapp:/app/ # Assuming adminActivity.js needs access to the Flask app's database
+    environment:
+    - ADMIN_PASSWORD=adminpassword # do not change it, it is used by the admin bot.
+    depends_on:
+      - webapp

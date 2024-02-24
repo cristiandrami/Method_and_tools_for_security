@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ user.username }}'s Profile</h2>
+
+{% if current_user.is_authenticated %}
+    {% if user.id != current_user.id %}
+        {% if is_subscribed %}
+            <p>You are subscribed to {{ user.username }}.</p>
+            {% if not is_mutual_subscription %}
+                <p>Note: Both users must be subscribed to each other to view private posts.</p>
+            {% endif %}
+            <form action="{{ url_for('unsubscribe', username=user.username) }}" method="post">
+                <button type="submit">Unsubscribe</button>
+            </form>
+        {% else %}
+            <form action="{{ url_for('subscribe', username=user.username) }}" method="post">
+                <button type="submit">Subscribe</button>
+            </form>
+            <p>Subscribe to {{ user.username }} to potentially view more posts. Both users must be subscribed to each other to view private posts.</p>
+        {% endif %}
+    {% endif %}
+{% endif %}
+
+{% for post in posts %}
+<div>
+    <h3>{{ post.title }}</h3>
+    <p>{{ post.content|safe}}</p>
+    {% if user.id == current_user.id %}
+        <!-- Edit and Delete functionality can be added here -->
+        <a href="{{ url_for('delete_post', post_id=post.id) }}">Delete Post</a>
+        <a href="{{ url_for('toggle_post_privacy', post_id=post.id) }}">{{ "Make Private" if post.public else "Make Public" }}</a>
+    {% endif %}
+</div>
+{% endfor %}
+{% endblock %}

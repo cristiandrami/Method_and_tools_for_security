@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Report URL</h2>
+<form action="{{ url_for('report') }}" method="post">
+    <input type="text" name="url" placeholder="Enter URL to report" required>
+    <button type="submit">Report</button>
+</form>
+{% endblock %}
